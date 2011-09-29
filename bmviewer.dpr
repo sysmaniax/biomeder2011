@@ -1,10 +1,10 @@
-program Project1;
+program bmviewer;
 
 uses
   Forms,
-  Unit1 in 'Unit1.pas' {Form1},
-  Unit2 in 'Unit2.pas' {Form2},
-  Unit3 in 'Unit3.pas';
+  UnitFormMain in 'UnitFormMain.pas' {Form1},
+  UnitFormDetails in 'UnitFormDetails.pas' {Form2},
+  UnitMiscShared in 'UnitMiscShared.pas';
 
 {$R *.res}
 

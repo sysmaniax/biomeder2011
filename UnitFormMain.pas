@@ -1,4 +1,4 @@
-unit Unit1;
+unit UnitFormMain;
 
 interface
 
@@ -43,7 +43,7 @@ var
 
 implementation
 
-uses Unit2, Unit3;
+uses UnitFormDetails, UnitMiscShared;
 
 {$R *.dfm}
 
