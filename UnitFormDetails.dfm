@@ -1,8 +1,8 @@
-object Form2: TForm2
+object BMViewerDetails: TBMViewerDetails
   Left = 315
   Top = 273
   BorderStyle = bsDialog
-  Caption = 'Form2'
+  Caption = 'BMViewerDetails'
   ClientHeight = 217
   ClientWidth = 750
   Color = clBtnFace
@@ -29,7 +29,7 @@ object Form2: TForm2
       Top = 20
       Width = 209
       Height = 21
-      DataSource = Form1.DataSource1
+      DataSource = BMViewerMain.DataSource1
       TabOrder = 0
     end
     object DBEdit2: TDBEdit
@@ -37,7 +37,7 @@ object Form2: TForm2
       Top = 48
       Width = 209
       Height = 21
-      DataSource = Form1.DataSource1
+      DataSource = BMViewerMain.DataSource1
       TabOrder = 1
     end
     object DBEdit3: TDBEdit
@@ -45,7 +45,7 @@ object Form2: TForm2
       Top = 72
       Width = 209
       Height = 21
-      DataSource = Form1.DataSource1
+      DataSource = BMViewerMain.DataSource1
       TabOrder = 2
     end
     object DBEdit4: TDBEdit
@@ -53,7 +53,7 @@ object Form2: TForm2
       Top = 96
       Width = 89
       Height = 21
-      DataSource = Form1.DataSource1
+      DataSource = BMViewerMain.DataSource1
       TabOrder = 3
     end
     object DBEdit5: TDBEdit
@@ -61,27 +61,27 @@ object Form2: TForm2
       Top = 120
       Width = 209
       Height = 21
-      DataSource = Form1.DataSource1
+      DataSource = BMViewerMain.DataSource1
       TabOrder = 4
       OnEnter = DBEdit5Enter
     end
   end
-  object Button1: TButton
+  object btnOK: TButton
     Left = 8
     Top = 184
     Width = 97
     Height = 33
-    Caption = 'Button1'
+    Caption = 'btnOK'
     TabOrder = 1
-    OnClick = Button1Click
+    OnClick = btnOKClick
   end
-  object Button2: TButton
+  object btnAbort: TButton
     Left = 640
     Top = 184
     Width = 105
     Height = 33
-    Caption = 'Button2'
+    Caption = 'btnAbort'
     TabOrder = 2
-    OnClick = Button2Click
+    OnClick = btnAbortClick
   end
 end

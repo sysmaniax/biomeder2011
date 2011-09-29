@@ -1,9 +1,9 @@
-object Form1: TForm1
-  Left = 207
-  Top = 149
+object BMViewerMain: TBMViewerMain
+  Left = 224
+  Top = 93
   Width = 1045
   Height = 738
-  Caption = 'Form1'
+  Caption = 'BMViewerMain'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -32,25 +32,24 @@ object Form1: TForm1
     OnDblClick = DBGrid1DblClick
     OnKeyDown = DBGrid1KeyDown
   end
-  object Edit1: TEdit
+  object EditFindString: TEdit
     Left = 120
     Top = 640
     Width = 233
     Height = 21
     TabOrder = 1
-    Text = 'Edit1'
-    OnKeyDown = Edit1KeyDown
+    OnKeyDown = EditFindStringKeyDown
   end
-  object Button1: TButton
+  object btnFind: TButton
     Left = 360
     Top = 640
     Width = 105
     Height = 25
-    Caption = 'Button1'
+    Caption = 'btnFind'
     TabOrder = 2
-    OnClick = Button1Click
+    OnClick = btnFindClick
   end
-  object ComboBox1: TComboBox
+  object cbTables: TComboBox
     Left = 472
     Top = 640
     Width = 177
@@ -59,14 +58,14 @@ object Form1: TForm1
     ItemHeight = 13
     TabOrder = 3
   end
-  object Button2: TButton
+  object btnChangeTable: TButton
     Left = 656
     Top = 640
     Width = 113
     Height = 25
-    Caption = 'Button2'
+    Caption = 'btnChangeTable'
     TabOrder = 4
-    OnClick = Button2Click
+    OnClick = btnChangeTableClick
   end
   object ADOConnection1: TADOConnection
     Connected = True

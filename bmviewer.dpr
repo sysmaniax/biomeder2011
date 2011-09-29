@@ -2,15 +2,17 @@ program bmviewer;
 
 uses
   Forms,
-  UnitFormMain in 'UnitFormMain.pas' {Form1},
-  UnitFormDetails in 'UnitFormDetails.pas' {Form2},
-  UnitMiscShared in 'UnitMiscShared.pas';
+  UnitFormMain in 'UnitFormMain.pas' {BMViewerMain},
+  UnitFormDetails in 'UnitFormDetails.pas' {BMViewerDetails},
+  UnitMiscShared in 'UnitMiscShared.pas',
+  UnitFormCustomers in 'UnitFormCustomers.pas' {BMViewerCustomers};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TBMViewerMain, BMViewerMain);
+  Application.CreateForm(TBMViewerDetails, BMViewerDetails);
+  Application.CreateForm(TBMViewerCustomers, BMViewerCustomers);
   Application.Run;
 end.
