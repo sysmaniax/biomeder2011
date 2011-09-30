@@ -95,8 +95,8 @@ object BMViewerMain: TBMViewerMain
     Parameters = <>
     SQL.Strings = (
       
-        'Select ArtNo, Nome, PrezzoNetto, Prezzo, IVA FROM Prodotti ORDER' +
-        ' BY Nome ASC;')
+        'Select ArtNo, Nome, PrezzoNetto, Prezzo, IVA, avail FROM Prodott' +
+        'i ORDER BY Nome ASC;')
     Left = 968
     Top = 638
   end

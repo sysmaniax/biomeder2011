@@ -54,7 +54,7 @@ begin
   // Form1.WindowState := wsMaximized;
   BMViewerMain.Position := poScreenCenter;
   EditFindString.Text := '';
-  strSQLQueryProducts:='Select ArtNo, Nome, PrezzoNetto, Prezzo, IVA FROM ' + TABLE_NAME_PRODUCTS + ' WHERE Nome Like ''%';
+  strSQLQueryProducts:='Select ArtNo, Nome, PrezzoNetto, Prezzo, avail, IVA FROM ' + TABLE_NAME_PRODUCTS + ' WHERE Nome Like ''%';
   strSQLQueryProductsOrderBy := '%'' ORDER BY ArtNo ASC;';
 
   strSQLQueryCustomers:='Select CodiceCliente, Qualifica, Nome, Via, Paese, CAP, Citta, Prov, Telefono, Fax, Cellulare, Email, PIVA_CF FROM ' + TABLE_NAME_CUSTOMERS + ' WHERE Nome Like ''%';

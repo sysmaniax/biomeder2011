@@ -24,7 +24,7 @@ object BMViewerDetails: TBMViewerDetails
     Height = 169
     Caption = 'GroupBox1'
     TabOrder = 0
-    object DBEdit1: TDBEdit
+    object DBEditArticleNo: TDBEdit
       Left = 112
       Top = 20
       Width = 209
@@ -32,7 +32,7 @@ object BMViewerDetails: TBMViewerDetails
       DataSource = BMViewerMain.DataSource1
       TabOrder = 0
     end
-    object DBEdit2: TDBEdit
+    object DBEditProductName: TDBEdit
       Left = 112
       Top = 48
       Width = 209
@@ -40,7 +40,7 @@ object BMViewerDetails: TBMViewerDetails
       DataSource = BMViewerMain.DataSource1
       TabOrder = 1
     end
-    object DBEdit3: TDBEdit
+    object DBEditNetPrice: TDBEdit
       Left = 112
       Top = 72
       Width = 209
@@ -48,7 +48,7 @@ object BMViewerDetails: TBMViewerDetails
       DataSource = BMViewerMain.DataSource1
       TabOrder = 2
     end
-    object DBEdit4: TDBEdit
+    object DBEditVAT: TDBEdit
       Left = 112
       Top = 96
       Width = 89
@@ -56,14 +56,25 @@ object BMViewerDetails: TBMViewerDetails
       DataSource = BMViewerMain.DataSource1
       TabOrder = 3
     end
-    object DBEdit5: TDBEdit
+    object DBEditPrice: TDBEdit
       Left = 112
       Top = 120
       Width = 209
       Height = 21
       DataSource = BMViewerMain.DataSource1
       TabOrder = 4
-      OnEnter = DBEdit5Enter
+      OnEnter = DBEditPriceEnter
+    end
+    object DBCheckBoxAvail: TDBCheckBox
+      Left = 328
+      Top = 16
+      Width = 153
+      Height = 25
+      Caption = 'DBCheckBoxAvail'
+      DataSource = BMViewerMain.DataSource1
+      TabOrder = 5
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
     end
   end
   object btnOK: TButton

@@ -9,15 +9,16 @@ uses
 type
   TBMViewerDetails = class(TForm)
     GroupBox1: TGroupBox;
-    DBEdit1: TDBEdit;
-    DBEdit2: TDBEdit;
-    DBEdit3: TDBEdit;
-    DBEdit4: TDBEdit;
-    DBEdit5: TDBEdit;
+    DBEditArticleNo: TDBEdit;
+    DBEditProductName: TDBEdit;
+    DBEditNetPrice: TDBEdit;
+    DBEditVAT: TDBEdit;
+    DBEditPrice: TDBEdit;
     btnOK: TButton;
     btnAbort: TButton;
+    DBCheckBoxAvail: TDBCheckBox;
     procedure FormShow(Sender: TObject);
-    procedure DBEdit5Enter(Sender: TObject);
+    procedure DBEditPriceEnter(Sender: TObject);
     procedure Form2Close(Sender: TObject; var Action: TCloseAction);
     procedure btnOKClick(Sender: TObject);
     procedure btnAbortClick(Sender: TObject);
@@ -44,17 +45,19 @@ begin
   case iQueryType of
   QUERY_TYPE_PRODUCTS_TABLE:
     begin
-        DBEdit1.DataField := 'ArtNo';
-        DBEdit2.DataField := 'Nome';
-        DBEdit3.DataField := 'PrezzoNetto';
-        DBEdit4.DataField := 'IVA';
-        DBEdit5.DataField := 'Prezzo';
+        DBEditArticleNo.DataField := 'ArtNo';
+        DBEditProductName.DataField := 'Nome';
+        DBEditNetPrice.DataField := 'PrezzoNetto';
+        DBEditVAT.DataField := 'IVA';
+        DBEditPrice.DataField := 'Prezzo';
 
-        DBEdit1.Text := BMViewerMain.DBGrid1.Fields[0].Value;
-        DBEdit2.Text := BMViewerMain.DBGrid1.Fields[1].Value;
-        DBEdit3.Text := BMViewerMain.DBGrid1.Fields[2].Value;
-        DBEdit4.Text := BMViewerMain.DBGrid1.Fields[4].Value;
-        DBEdit5.Text := BMViewerMain.DBGrid1.Fields[3].Value;
+        DBEditArticleNo.Text := BMViewerMain.DBGrid1.Fields[0].Value;
+        DBEditProductName.Text := BMViewerMain.DBGrid1.Fields[1].Value;
+        DBEditNetPrice.Text := BMViewerMain.DBGrid1.Fields[2].Value;
+        DBEditVAT.Text := BMViewerMain.DBGrid1.Fields[4].Value;
+        DBEditPrice.Text := BMViewerMain.DBGrid1.Fields[3].Value;
+        
+        DBEditArticleNo.SetFocus;
 
 
     end;
@@ -63,55 +66,80 @@ begin
   BMViewerMain.ADOQuery1.Edit;
 end;
 
-procedure TBMViewerDetails.DBEdit5Enter(Sender: TObject);
+procedure TBMViewerDetails.DBEditPriceEnter(Sender: TObject);
 var fNetPrice, fVAT, fTotalPrice: Double;
 begin
   if iQueryType = QUERY_TYPE_PRODUCTS_TABLE then
   begin
-    fNetPrice := StrToFloat(DBEdit3.Text);
-    fVAT := StrToFloat(DBEdit4.Text);
+    fNetPrice := StrToFloat(DBEditNetPrice.Text);
+    fVAT := StrToFloat(DBEditVAT.Text);
     fTotalPrice := (fNetPrice / 100) * fVAT + fNetPrice;
-    DBEdit5.Text := FloatToStr(fTotalPrice);
+    DBEditPrice.Text := FloatToStr(fTotalPrice);
   end;
 end;
 
 procedure TBMViewerDetails.Form2Close(Sender: TObject; var Action: TCloseAction);
-var E: Exception;
+var
+  E: Exception;
 begin
-
 end;
 
 procedure TBMViewerDetails.btnOKClick(Sender: TObject);
 begin
-  try
-    BMViewerMain.ADOQuery1.Post;
+  //try
+    if BMViewerMain.ADOQuery1.Modified = True then
+    begin
+      BMViewerMain.ADOQuery1.UpdateRecord;
+      BMViewerMain.ADOQuery1.Post;
 
-    DBEdit1.DataField := '';
-    DBEdit2.DataField := '';
-    DBEdit3.DataField := '';
-    DBEdit4.DataField := '';
-    DBEdit5.DataField := '';
+    end;
 
-    DBEdit1.Text := '';
-    DBEdit2.Text := '';
-    DBEdit3.Text := '';
-    DBEdit4.Text := '';
-    DBEdit5.Text := '';
+    DBEditArticleNo.DataField := '';
+    DBEditProductName.DataField := '';
+    DBEditNetPrice.DataField := '';
+    DBEditVAT.DataField := '';
+    DBEditPrice.DataField := '';
 
-  self.Close;
+    DBEditArticleNo.Text := '';
+    DBEditProductName.Text := '';
+    DBEditNetPrice.Text := '';
+    DBEditVAT.Text := '';
+    DBEditPrice.Text := '';
 
-  except
-     Application.MessageBox('Error','Error');
-     BMViewerMain.ADOQuery1.CancelUpdates;
-  end;
+
+    self.Close;
+  //except
+  //   Application.MessageBox('Error','Error');
+  //   BMViewerMain.ADOQuery1.CancelUpdates;
+  // end;
   //finally
 
 end;
 
 procedure TBMViewerDetails.btnAbortClick(Sender: TObject);
+var
+  iRes: integer;
+  strMessage: String;
 begin
-  BMViewerMain.ADOQuery1.CancelUpdates;
+  if BMViewerMain.ADOQuery1.Modified = True then
+  begin
+    iRes := Application.MessageBox(STR_MSG_SAVE_MODIFIED_RECORDS,'',MB_YESNO);
+    case iRes of
+      IDYES:
+        begin
+          BMViewerMain.ADOQuery1.UpdateRecord;
+          BMViewerMain.ADOQuery1.Post;
+          Application.MessageBox(STR_MSG_CHANGES_SAVED,'',MB_OK);
+          self.Close
+        end;
+      IDNO: begin BMViewerMain.ADOQuery1.CancelUpdates; self.Close; end;
+    end; // case
+    self.Close;
+  end;
   self.Close;
+
+  // BMViewerMain.ADOQuery1.CancelUpdates;
+  // self.Close;
 end;
 
 procedure TBMViewerDetails.FormCreate(Sender: TObject);

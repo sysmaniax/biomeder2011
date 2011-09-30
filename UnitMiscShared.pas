@@ -13,6 +13,10 @@ const
   TABLE_NAME_CUSTOMERS = 'Indirizzario';
   TABLE_NAME_INVOICES = 'Fatture';
 
+// String constants;
+  STR_MSG_SAVE_MODIFIED_RECORDS = 'Salvare le modifiche apportate ai dati?';
+  STR_MSG_CHANGES_SAVED = 'Modifiche salvate correttamente.';
+
 implementation
 
 end.

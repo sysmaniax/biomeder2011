@@ -90,8 +90,8 @@ MaxStackSize=1048576
 ImageBase=4194304
 ExeDescription=
 [Directories]
-OutputDir=
-UnitOutputDir=
+OutputDir=J:\Projects\Delphi\biomeder\src\biomeder2011\bin
+UnitOutputDir=J:\Projects\Delphi\biomeder\src\biomeder2011\bin
 PackageDLLOutputDir=
 PackageDCPOutputDir=
 SearchPath=
@@ -136,3 +136,9 @@ Item0=DEBUG
 [HistoryLists\hlUnitAliases]
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
+[HistoryLists\hlUnitOutputDirectory]
+Count=1
+Item0=J:\Projects\Delphi\biomeder\src\biomeder2011\bin
+[HistoryLists\hlOutputDirectorry]
+Count=1
+Item0=J:\Projects\Delphi\biomeder\src\biomeder2011\bin
