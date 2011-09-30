@@ -4,10 +4,13 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, StdCtrls, Mask, DBCtrls;
 
 type
   TBMViewerCustomers = class(TForm)
+    GroupBox1: TGroupBox;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
   private
     { Private declarations }
   public
@@ -19,7 +22,7 @@ var
 
 implementation
 
-uses UnitMiscShared;
+uses UnitMiscShared, UnitFormMain;
 
 {$R *.dfm}
 

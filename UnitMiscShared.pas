@@ -5,6 +5,7 @@ interface
 var iQueryType: integer;
 
 const
+
   QUERY_TYPE_PRODUCTS_TABLE = 0;
   QUERY_TYPE_CUSTOMERS_TABLE = 1;
   QUERY_TYPE_INVOICES_TABLE = 2;
