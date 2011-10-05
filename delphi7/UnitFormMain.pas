@@ -8,11 +8,7 @@ uses
 
 type
   TBMViewerMain = class(TForm)
-    ADOConnection1: TADOConnection;
-    ADOTable1: TADOTable;
-    DataSource1: TDataSource;
     DBGrid1: TDBGrid;
-    ADOQuery1: TADOQuery;
     EditFindString: TEdit;
     btnFind: TButton;
     cbTables: TComboBox;
@@ -34,35 +30,25 @@ type
 
 var
   BMViewerMain: TBMViewerMain;
-  strSQLQueryProducts: string;
-  strSQLQueryProductsOrderBy: string;
-  strSQLQueryCustomers: string;
-  strSQLQueryCustomersOrderBy: string;
-  strSQLQueryInvoices: string;
-  strSQLQueryInvoicesOrderBy: string;
 
 implementation
 
-uses UnitFormDetails, UnitMiscShared, UnitFormCustomers;
+uses UnitFormDetails, UnitMiscShared, UnitFormCustomers,
+  UnitDataModuleMain;
 
 {$R *.dfm}
 
 procedure TBMViewerMain.FormCreate(Sender: TObject);
 begin
   iQueryType := QUERY_TYPE_PRODUCTS_TABLE;
-
+  {$IFDEF DEBUG}
+    self.Caption := self.Caption + ' [DEBUG]';
+  {$ENDIF}
+  
   // Form1.WindowState := wsMaximized;
   BMViewerMain.Position := poScreenCenter;
   EditFindString.Text := '';
-  strSQLQueryProducts:='Select ArtNo, Nome, PrezzoNetto, Prezzo, avail, IVA FROM ' + TABLE_NAME_PRODUCTS + ' WHERE Nome Like ''%';
-  strSQLQueryProductsOrderBy := '%'' ORDER BY ArtNo ASC;';
-
-  strSQLQueryCustomers:='Select CodiceCliente, Qualifica, Nome, Via, Paese, CAP, Citta, Prov, Telefono, Fax, Cellulare, Email, PIVA_CF FROM ' + TABLE_NAME_CUSTOMERS + ' WHERE Nome Like ''%';
-  strSQLQueryCustomersOrderBy := '%'' ORDER BY CodiceCliente ASC;';
-
-  strSQLQueryInvoices:='Select NumeroFattura, CodiceCliente, Nome,  DataFattura, TotaleFattura FROM ' + TABLE_NAME_INVOICES + ' WHERE Nome Like ''%';
-  strSQLQueryInvoicesOrderBy := '%'' ORDER BY NumeroFattura ASC;';
-
+  
   cbTables.Items.Add (TABLE_NAME_PRODUCTS);
   cbTables.Items.Add (TABLE_NAME_CUSTOMERS);
   cbTables.Items.Add (TABLE_NAME_INVOICES);
@@ -90,21 +76,21 @@ end;
 
 procedure TBMViewerMain.btnChangeTableClick(Sender: TObject);
 begin
-  ADOTable1.Close;
+  DataModuleMain.ADOTable1.Close;
 //  ADOTable1.ClearFields;
 
-  ADOQuery1.Close;
-  ADOQuery1.SQL.Clear;
+  DataModuleMain.ADOQuery1.Close;
+  DataModuleMain.ADOQuery1.SQL.Clear;
   case cbTables.ItemIndex of
-  QUERY_TYPE_PRODUCTS_TABLE: begin ADOTable1.TableName := TABLE_NAME_PRODUCTS; ADOQuery1.SQL.Add(strSQLQueryProducts + EditFindString.Text + strSQLQueryProductsOrderBy); end;
-  QUERY_TYPE_CUSTOMERS_TABLE: begin ADOTable1.TableName := TABLE_NAME_CUSTOMERS; ADOQuery1.SQL.Add(strSQLQueryCustomers + EditFindString.Text + strSQLQueryCustomersOrderBy); end;
-  QUERY_TYPE_INVOICES_TABLE: begin ADOTable1.TableName := TABLE_NAME_INVOICES; ADOQuery1.SQL.Add(strSQLQueryInvoices + EditFindString.Text + strSQLQueryInvoicesOrderBy); end;
+  QUERY_TYPE_PRODUCTS_TABLE: begin DataModuleMain.ADOTable1.TableName := TABLE_NAME_PRODUCTS; DataModuleMain.ADOQuery1.SQL.Add(strSQLQueryProducts + EditFindString.Text + strSQLQueryProductsOrderBy); end;
+  QUERY_TYPE_CUSTOMERS_TABLE: begin DataModuleMain.ADOTable1.TableName := TABLE_NAME_CUSTOMERS; DataModuleMain.ADOQuery1.SQL.Add(strSQLQueryCustomers + EditFindString.Text + strSQLQueryCustomersOrderBy); end;
+  QUERY_TYPE_INVOICES_TABLE: begin DataModuleMain.ADOTable1.TableName := TABLE_NAME_INVOICES; DataModuleMain.ADOQuery1.SQL.Add(strSQLQueryInvoices + EditFindString.Text + strSQLQueryInvoicesOrderBy); end;
   end;
   iQueryType := cbTables.ItemIndex;
-  ADOTable1.Open;
-  ADOQuery1.Open;
+  DataModuleMain.ADOTable1.Open;
+  //ADOQuery1.Open;
   EditFindString.SetFocus;
-  ADOTable1.First;
+  DataModuleMain.ADOTable1.First;
 end;
 
 procedure TBMViewerMain.DBGrid1KeyDown(Sender: TObject; var Key: Word;
@@ -117,7 +103,7 @@ procedure TBMViewerMain.DBGrid1DblClick(Sender: TObject);
 var strSQLQuerySelectedRow: string;
 begin
     {$IFDEF Debug}
-    Application.MessageBox(PWideChar(IntToStr(DBGrid1.Fields[0].Value)), 'Sel');
+    Application.MessageBox(PAnsiChar(IntToStr(DBGrid1.Fields[0].Value)), 'Sel');
     // SelectedField  Fields[DBGrid1.SelectedIndex].Value)), 'Selected'); //ADOTable1.Properties.Count)) ,'Selected')
     {$ENDIF}
   case iQueryType of

@@ -1,9 +1,9 @@
 object BMViewerMain: TBMViewerMain
-  Left = 224
-  Top = 93
+  Left = 307
+  Top = 265
+  Width = 1045
+  Height = 738
   Caption = 'BMViewerMain'
-  ClientHeight = 700
-  ClientWidth = 1037
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +20,7 @@ object BMViewerMain: TBMViewerMain
     Top = 8
     Width = 1025
     Height = 625
-    DataSource = DataSource1
+    DataSource = DataModuleMain.DataSource1
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
     ReadOnly = True
     TabOrder = 0
@@ -55,6 +55,7 @@ object BMViewerMain: TBMViewerMain
     Width = 177
     Height = 21
     Style = csDropDownList
+    ItemHeight = 13
     TabOrder = 3
   end
   object btnChangeTable: TButton
@@ -65,38 +66,5 @@ object BMViewerMain: TBMViewerMain
     Caption = 'btnChangeTable'
     TabOrder = 4
     OnClick = btnChangeTableClick
-  end
-  object ADOConnection1: TADOConnection
-    Connected = True
-    ConnectionString = 
-      'Provider=MSDASQL.1;Persist Security Info=False;Data Source=biome' +
-      'd'
-    LoginPrompt = False
-    Left = 936
-    Top = 638
-  end
-  object ADOTable1: TADOTable
-    Active = True
-    Connection = ADOConnection1
-    CursorType = ctStatic
-    TableName = 'Prodotti'
-    Left = 904
-    Top = 638
-  end
-  object DataSource1: TDataSource
-    DataSet = ADOQuery1
-    Left = 1000
-    Top = 638
-  end
-  object ADOQuery1: TADOQuery
-    Connection = ADOConnection1
-    CursorType = ctStatic
-    Parameters = <>
-    SQL.Strings = (
-      
-        'Select ArtNo, Nome, PrezzoNetto, Prezzo, IVA, avail FROM Prodott' +
-        'i ORDER BY Nome ASC;')
-    Left = 968
-    Top = 638
   end
 end

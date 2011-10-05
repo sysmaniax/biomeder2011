@@ -4,10 +4,14 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, RLReport;
 
 type
   TForm1 = class(TForm)
+    RLReport1: TRLReport;
+    RLGroup1: TRLGroup;
+    RLDetailGrid1: TRLDetailGrid;
+    RLDBText1: TRLDBText;
   private
     { Private declarations }
   public
