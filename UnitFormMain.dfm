@@ -99,4 +99,8 @@ object BMViewerMain: TBMViewerMain
     Left = 968
     Top = 638
   end
+  object RvProject1: TRvProject
+    Left = 56
+    Top = 648
+  end
 end

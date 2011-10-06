@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Grids, DBGrids, DB, ADODB, StdCtrls;
+  Dialogs, Grids, DBGrids, DB, ADODB, StdCtrls, RpDefine, RpRave;
 
 type
   TBMViewerMain = class(TForm)
@@ -17,6 +17,7 @@ type
     btnFind: TButton;
     cbTables: TComboBox;
     btnChangeTable: TButton;
+    RvProject1: TRvProject;
     procedure FormCreate(Sender: TObject);
     procedure btnFindClick(Sender: TObject);
     procedure EditFindStringKeyDown(Sender: TObject; var Key: Word;
