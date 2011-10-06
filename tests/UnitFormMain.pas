@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Grids, DBGrids, DB, ADODB, StdCtrls, RpDefine, RpRave;
+  Dialogs, Grids, DBGrids, DB, ADODB, StdCtrls, RpDefine, RpRave, RVDLADO,
+  RpCon, RpConDS, RpRender, RpRenderPDF, RpBase, RpSystem;
 
 type
   TBMViewerMain = class(TForm)
@@ -17,6 +18,8 @@ type
     btnFind: TButton;
     cbTables: TComboBox;
     btnChangeTable: TButton;
+    Button1: TButton;
+    RvDataSetConnection1: TRvDataSetConnection;
     RvProject1: TRvProject;
     procedure FormCreate(Sender: TObject);
     procedure btnFindClick(Sender: TObject);
@@ -27,6 +30,7 @@ type
     procedure DBGrid1KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure Form1Show(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,6 +85,13 @@ begin
   // ADOQuery1.SQL.Add('Select ArtNo, Nome, PrezzoNetto, Prezzo, IVA FROM Prodotti WHERE Nome Like ''%' + Edit1.Text + '%'' ORDER BY ArtNo ASC;');
   // ADOQuery1.SQL.Add(strSQLQueryProdotti + Edit1.Text + strSQLQueryOrderByProdotti);
   // ADOQuery1.Open;
+end;
+
+procedure TBMViewerMain.Button1Click(Sender: TObject);
+begin
+  RvProject1.Open;
+  RvProject1.SetParam('Name','Bla');
+  RvProject1.Execute;
 end;
 
 procedure TBMViewerMain.EditFindStringKeyDown(Sender: TObject; var Key: Word;

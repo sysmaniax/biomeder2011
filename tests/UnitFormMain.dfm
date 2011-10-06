@@ -66,13 +66,22 @@ object BMViewerMain: TBMViewerMain
     TabOrder = 4
     OnClick = btnChangeTableClick
   end
+  object Button1: TButton
+    Left = 360
+    Top = 671
+    Width = 105
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 5
+    OnClick = Button1Click
+  end
   object ADOConnection1: TADOConnection
     Connected = True
     ConnectionString = 
       'Provider=MSDASQL.1;Persist Security Info=False;Data Source=biome' +
       'd'
     LoginPrompt = False
-    Left = 936
+    Left = 808
     Top = 638
   end
   object ADOTable1: TADOTable
@@ -80,12 +89,12 @@ object BMViewerMain: TBMViewerMain
     Connection = ADOConnection1
     CursorType = ctStatic
     TableName = 'Prodotti'
-    Left = 904
+    Left = 864
     Top = 638
   end
   object DataSource1: TDataSource
     DataSet = ADOQuery1
-    Left = 1000
+    Left = 984
     Top = 638
   end
   object ADOQuery1: TADOQuery
@@ -96,11 +105,21 @@ object BMViewerMain: TBMViewerMain
       
         'Select ArtNo, Nome, PrezzoNetto, Prezzo, IVA, avail FROM Prodott' +
         'i ORDER BY Nome ASC;')
-    Left = 968
+    Left = 920
     Top = 638
   end
+  object RvDataSetConnection1: TRvDataSetConnection
+    RuntimeVisibility = rtEndUser
+    DataSet = ADOQuery1
+    Left = 256
+    Top = 672
+  end
   object RvProject1: TRvProject
+    LoadDesigner = True
+    ProjectFile = 
+      'E:\Developer - My Documents\Projects\biomeder\src\biomeder2011\r' +
+      'eports\BMPriceList.rav'
     Left = 56
-    Top = 648
+    Top = 656
   end
 end
